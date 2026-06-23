@@ -1,0 +1,70 @@
+{
+  "id": "8cd3ae35-cc88-4d5b-a692-230dc844c63f",
+  "prevId": "60dec468-beae-430e-9834-b8d5038f4c62",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.feed_follows": {
+      "name": "feed_follows",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "feed_id": {
+          "name": "feed_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "feed_follows_user_id_users_id_fk": {
+          "name": "feed_follows_user_id_users_id_fk",
+          "tableFrom": "feed_follows",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "feed_follows_feed_id_feeds_id_fk": {
+          "name": "feed_follows_feed_id_feeds_id_fk",
+          "tableFrom": "feed_follows",
+          "tableTo": "feeds",
+          "columnsFrom": [
+            "feed_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
